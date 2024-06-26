@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Nurul Farhana binti Zamri</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --background-color: #6e3e77;
+            --header-color: #1b081d;
+            --nav-color: #0a0a0a;
+            --text-color: white;
+            --highlight-color: #FF6B6B;
+            --section-color: #0a0a0a;
+            --button-color: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .background {
+            background-image: url('picture/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7; /* Optional: To adjust the opacity of the background image */
+        }
+
+        header {
+            background-color: var(--header-color);
+            color: var(--text-color);
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        header.sticky {
+            background-color: #333;
+        }
+
+        nav {
+            background-color: var(--nav-color);
+            padding: 20px;
+            width: 200px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: left 0.3s ease;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--highlight-color);
+            background-color: rgba(255, 99, 71, 0.2);
+            border-radius: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--highlight-color);
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            padding-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero {
+            background-image: url('https://source.unsplash.com/random/1920x1080');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin: 0;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .video-resume-button {
+            background-color: var(--button-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .video-resume-button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #1b081d ;
+            color: var(--text-color);
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        img.logo {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        img.logo:hover {
+            transform: rotate(360deg);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .menu-toggle div {
+            width: 100%;
+            height: 4px;
+            background-color: var(--text-color);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 0;
+                left: -200px;
+                height: 100%;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .main {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                margin-top: 60px;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Adjustments for content position and font size */
+        .hero p {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3.5em; /* Ensure this is larger than the content font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <h1>Home</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <div class="main">
+        <nav id="navbar">
+            <div class="logo-container">
+                <a href="student.html">
+                <img src="picture/logo.jpeg" alt="Logo" class="logo" onclick="openModal()"></a>
+            </div>
+            <a href="index.html" class="active">Home</a>
+            <a href="aboutme.html">About Me</a>
+            <a href="education.html">Education</a>
+            <a href="workexperience.html">Work Experience</a>
+            <a href="skill.html">Skills & Expertise</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="content">
+            <div class="hero">
+                <h2>Welcome to My Homepage</h2>
+                <p>NURUL FARHANA BINTI ZAMRI</p>
+                <button class="video-resume-button" onclick="openModal()">Watch My Video Resume</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="video/video_resume.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nurul Farhana binti Zamri. All rights reserved.</p>
+        <p>Recommended Browser: Google Chrome, Resolution: 1920x1080</p>
+        <p>Last Updated: June 15, 2024</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navbar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 0) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        };
+    </script>
+</body>
+</html>

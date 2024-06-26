@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience - Nurul Farhana binti Zamri</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --background-color: #6e3e77;
+            --header-color: #1b081d;
+            --nav-color: #0a0a0a;
+            --text-color: white;
+            --highlight-color: #FF6B6B;
+            --section-color: #0a0a0a;
+            --button-color: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        .background {
+            background-image: url('picture/Background.jpg'); /* Ensure this path is correct */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7; /* Optional: To adjust the opacity of the background image */
+        }
+
+        header {
+            background-color: var(--header-color);
+            color: var(--text-color);
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        header.sticky {
+            background-color: #333;
+        }
+
+        nav {
+            background-color: var(--nav-color);
+            padding: 20px;
+            width: 200px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: left 0.3s ease;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--highlight-color);
+            background-color: rgba(255, 99, 71, 0.2);
+            border-radius: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--highlight-color);
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 800px;
+            background-color: var(--section-color);
+            padding: 20px;
+            border-radius: 8px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            background-color: #1b081d;
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto; /* Ensure footer sticks to the bottom */
+            position: relative;
+            z-index: 1;
+        }
+
+        img.logo {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        img.logo:hover {
+            transform: rotate(360deg);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .menu-toggle div {
+            width: 100%;
+            height: 4px;
+            background-color: var(--text-color);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 0;
+                left: -200px;
+                height: 100%;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .main {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                margin-top: 60px;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0 auto;
+            padding: 40px 0;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--highlight-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            width: 50%;
+        }
+
+        .timeline-event.left {
+            left: 0;
+        }
+
+        .timeline-event.right {
+            left: 50%;
+        }
+
+        .timeline-event::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: var(--highlight-color);
+            top: 15px;
+            left: -12px;
+            transform: translateX(-50%);
+        }
+
+        .timeline-event.right::after {
+            left: auto;
+            right: -12px;
+            transform: translateX(50%);
+        }
+
+        .timeline-event-content {
+            padding: 20px;
+            background-color: var(--section-color);
+            border-radius: 8px;
+        }
+
+        .timeline-event-content h3 {
+            margin-top: 0;
+        }
+
+        .timeline-event-content p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <h1>Work Experience</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <div class="main">
+        <nav id="navbar">
+            <div class="logo-container">
+                <a href="student.html">
+                    <img src="picture/logo.jpeg" alt="Logo" class="logo">
+                </a>
+            </div>
+            <a href="index.html">Home</a>
+            <a href="aboutme.html">About Me</a>
+            <a href="education.html">Education</a>
+            <a href="workexperience.html" class="active">Work Experience</a>
+            <a href="skill.html">Skills & Expertise</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="content">
+            <div class="section" id="work1">
+                <h2>First Working History (2020)</h2>
+                <p>Worked as a salesgirl at Maxvalue Ringgit Store</p>
+            </div>
+            <div class="section" id="work2">
+                <h2>Second Working History (2022)</h2>
+                <p>Worked as an intern in the warehouse area at HOMIE Gallery Textile Sdn Bhd</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-event left">
+                    <div class="timeline-event-content">
+                        <h3>2020</h3>
+                        <p>Salesgirl at Maxvalue Ringgit Store</p>
+                    </div>
+                </div>
+                <div class="timeline-event right">
+                    <div class="timeline-event-content">
+                        <h3>2022</h3>
+                        <p>Internship in the warehouse area at HOMIE Gallery Textile Sdn Bhd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nurul Farhana binti Zamri. All rights reserved.</p>
+        <p>Recommended Browser: Google Chrome, Resolution: 1920x1080</p>
+        <p>Last Updated: June 15, 2024</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navbar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 0) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        };
+    </script>
+</body>
+</html>
